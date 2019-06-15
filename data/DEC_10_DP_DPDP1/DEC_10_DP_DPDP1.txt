@@ -3,48 +3,16 @@ Profile of General Population and Housing Characteristics: 2010
 
 NOTE:  For more information on confidentiality protection, nonsampling error, and definitions, see http://www.census.gov/prod/cen2010/doc/dpsf.pdf.
 
-(r38234)	This count has been revised.   
-Revised count: 308,746,065 Revision date: 01-31-2014
+(r47059)	This count has been revised.   
+Revised count: 145,196 Revision date: 01-10-2013
 
 For more information, see  2010 Census Count Question Resolution.
 
   
 
 
-(r27630)	This count has been revised.   
-Revised count: 300,758,672 Revision date: 01-31-2014
-
-For more information, see  2010 Census Count Question Resolution.
-
-  
-
-
-(r25736)	This count has been revised.   
-Revised count: 7,987,393 Revision date: 01-31-2014
-
-For more information, see  2010 Census Count Question Resolution.
-
-  
-
-
-(r405)	This count has been revised.   
-Revised count: 116,716,467 Revision date: 01-31-2014
-
-For more information, see  2010 Census Count Question Resolution.
-
-  
-
-
-(r15031)	This count has been revised.   
-Revised count: 131,704,954 Revision date: 01-31-2014
-
-For more information, see  2010 Census Count Question Resolution.
-
-  
-
-
-(r10625)	This count has been revised.   
-Revised count: 14,988,487 Revision date: 01-31-2014
+(r26705)	This count has been revised.   
+Revised count: 12,808 Revision date: 01-10-2013
 
 For more information, see  2010 Census Count Question Resolution.
 
