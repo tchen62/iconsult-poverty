@@ -1,0 +1,67 @@
+GEO.id,Id
+GEO.id2,Id2
+GEO.display-label,Geography
+HD01_S01,Number; HISPANIC OR LATINO - Total population
+HD02_S01,Percent; HISPANIC OR LATINO - Total population
+HD01_S02,Number; HISPANIC OR LATINO - Total population - Hispanic or Latino (of any race)
+HD02_S02,Percent; HISPANIC OR LATINO - Total population - Hispanic or Latino (of any race)
+HD01_S03,Number; HISPANIC OR LATINO - Total population - Not Hispanic or Latino
+HD02_S03,Percent; HISPANIC OR LATINO - Total population - Not Hispanic or Latino
+HD01_S04,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race)
+HD02_S04,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race)
+HD01_S05,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Mexican
+HD02_S05,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Mexican
+HD01_S06,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Puerto Rican
+HD02_S06,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Puerto Rican
+HD01_S07,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Cuban
+HD02_S07,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Cuban
+HD01_S08,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Dominican (Dominican Republic)
+HD02_S08,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Dominican (Dominican Republic)
+HD01_S09,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican)
+HD02_S09,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican)
+HD01_S10,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Costa Rican
+HD02_S10,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Costa Rican
+HD01_S11,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Guatemalan
+HD02_S11,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Guatemalan
+HD01_S12,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Honduran
+HD02_S12,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Honduran
+HD01_S13,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Nicaraguan
+HD02_S13,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Nicaraguan
+HD01_S14,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Panamanian
+HD02_S14,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Panamanian
+HD01_S15,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Salvadoran
+HD02_S15,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Salvadoran
+HD01_S16,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Other Central American
+HD02_S16,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Central American (excludes Mexican) - Other Central American
+HD01_S17,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American
+HD02_S17,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American
+HD01_S18,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Argentinean
+HD02_S18,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Argentinean
+HD01_S19,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Bolivian
+HD02_S19,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Bolivian
+HD01_S20,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Chilean
+HD02_S20,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Chilean
+HD01_S21,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Colombian
+HD02_S21,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Colombian
+HD01_S22,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Ecuadorian
+HD02_S22,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Ecuadorian
+HD01_S23,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Paraguayan
+HD02_S23,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Paraguayan
+HD01_S24,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Peruvian
+HD02_S24,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Peruvian
+HD01_S25,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Uruguayan
+HD02_S25,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Uruguayan
+HD01_S26,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Venezuelan
+HD02_S26,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Venezuelan
+HD01_S27,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Other South American
+HD02_S27,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - South American - Other South American
+HD01_S28,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino
+HD02_S28,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino
+HD01_S29,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spaniard
+HD02_S29,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spaniard
+HD01_S30,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spanish
+HD02_S30,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spanish
+HD01_S31,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spanish American
+HD02_S31,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - Spanish American
+HD01_S32,Number; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - All other Hispanic or Latino
+HD02_S32,Percent; HISPANIC OR LATINO BY TYPE - Hispanic or Latino (of any race) - Other Hispanic or Latino - All other Hispanic or Latino

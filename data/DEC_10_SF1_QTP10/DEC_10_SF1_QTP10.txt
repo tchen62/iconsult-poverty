@@ -1,0 +1,19 @@
+QT-P10
+Hispanic or Latino by Type: 2010
+
+NOTE: For information on confidentiality protection, nonsampling error, and definitions, see  http://www.census.gov/prod/cen2010/doc/sf1.pdf.
+
+(r47059)	This count has been revised.   
+Revised count: 145,196 Revision date: 01-10-2013
+
+For more information, see  2010 Census Count Question Resolution.
+
+  
+
+
+X Not applicable.
+
+Source: U.S. Census Bureau, 2010 Census.
+
+Summary File 1, Table PCT 11.
+
