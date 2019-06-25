@@ -7,6 +7,9 @@
 
 ## Source  
 - https://factfinder.census.gov/faces/nav/jsf/pages/community_facts.xhtml?src=bkmk    
+- http://www.innovatesyracuse.com/blog/datacuse  
+- https://cran.r-project.org/web/packages/censusapi/vignettes/getting-started.html  
+
 
 ## **iConsult Collaborative**     
 
