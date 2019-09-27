@@ -2,8 +2,6 @@
 # Author: 1. Ashokkumar Sharma
 #         2. Shivani Kulkarni
 
-
-install.packages("rlist")
 library("rlist")
 library('tidycensus')
 v = load_variables(2017, "acs5", cache = TRUE)

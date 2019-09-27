@@ -7,14 +7,8 @@ poverty <- get_acs(geography = "tract", table = c("B17001"), key = "6bef287462db
                               state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE) %>% 
   filter(variable == "B17001_001" | variable == "B17001_002")
 
-
-
-
 GEOIDs <- poverty[1:110,1] %>% unique()
 ID_list <- GEOIDs$GEOID
-
-
-
 
 poverty_final <- poverty %>% 
   filter(GEOID %in% ID_list) %>%
