@@ -1,10 +1,13 @@
+# Script by Parrh
+
 library(dplyr)
 library(tidyverse)
-install.packages('tidycensus')
+#install.packages('tidycensus')
 library(tidycensus)
 library(magrittr) # Added to remove piping
 library(sqldf)
 
+k=0
 v = load_variables(2017, "acs5", cache = TRUE)
 attr_names <- strsplit(v$name, '   ')[1:23348]
 list_names <- c()
@@ -13,7 +16,7 @@ for (s in attr_names){
 }
 list_names <- unique(strsplit(list_names, ' '))
 
-for(i in list_names[1:5])
+for(i in list_names[1:42])
 {
   poverty<- get_acs(geography = "tract", table = c(i), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
                     state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)
@@ -22,10 +25,54 @@ for(i in list_names[1:5])
   if (nrow(poverty) < 280) next
   else
     abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067005500'")
-  print(abc)
+  #print(abc)
   cut_point <- abc$`count(GEOID)`
-  print(cut_point)
-  cutpoint_dataframe = print(poverty[1:cut_point, 1:4])
+  #print(cut_point)
+  cutpoint_dataframe = poverty[1:cut_point, 1:4]
+  
+  
+  
+  
+  list_df <- split(cutpoint_dataframe, cutpoint_dataframe$GEOID) #split the dataset into a list of datasets based on the value of iris$Species
+  list2env(list_df, envir= .GlobalEnv) #split the list into separate datasets
+  
+  #View(list_df)
+  
+  #w=list()
+  
+  df= data.frame(GEOID=character(),
+                 Name=character(),
+                 variable=character(),
+                 estimate=double(),
+                 stringsAsFactors = FALSE
+  )
+  
+  for(j in list_df){
+    fourth.column <- j[,4]
+    normed <- sapply(fourth.column, function(x) x / x[1])
+    normed = data.frame(normed)
+    
+    names(normed)=c("normalized")
+    if(normed$normalized > 1){ 
+      next}
+    else{
+      New <- cbind(normed,j)
+      #assign(paste0("x", i), New)
+      #assign(paste0("DF", i$GEOID), New)
+      df=rbind(df,New)
+    }
+    
+    
+    
+    
+  }
+  
+  k=k+1
+  
+  assign(paste("DF", k), df)
+  
+  
+  
   #View(poverty[1:cut_point, 1:4])
   
   #  while (GEOID)
@@ -64,22 +111,6 @@ for(i in list_names[1:5])
 
 
 
-list_df <- split(cutpoint_dataframe, cutpoint_dataframe$GEOID) #split the dataset into a list of datasets based on the value of iris$Species
-list2env(list_df, envir= .GlobalEnv) #split the list into separate datasets
-
-View(list_df)
-
-
-
-for(i in list_df){
-  fourth.column <- i[,4]
-  normed <- sapply(fourth.column, function(x) x / x[1])
-  normed = data.frame(normed)
-  New <- rbind(normed,i)
-}
-
-View(normed)
-
 
 
 
@@ -91,3 +122,18 @@ View(normed)
 
 
 
+
+
+
+
+
+
+
+
+
+test <- spread(`36067004900`, variable, estimate) %>%
+  left_join(Poverty_table, by ='GEOID')
+
+for(i in ncol(test)) {
+  assign(      test[,i+2]/test[,ncol(test)]
+}
