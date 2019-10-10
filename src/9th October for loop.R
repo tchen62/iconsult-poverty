@@ -145,8 +145,8 @@ for(i in list_names[1:42])
 
 
 
-test <- spread(`36067004900`, variable, estimate) %>%
-  left_join(Poverty_table, by ='GEOID')
+test <- spread(DF20, variable, normalized) %>%
+  left_join(DF21, by ='GEOID')
 
 for(i in ncol(test)) {
   assign(      test[,i+2]/test[,ncol(test)]
