@@ -61,6 +61,7 @@ for(j in list_df){
 dfnew <- dfnew[, -5]
 
 test <- spread(dfnew, variable, normalized)
+test <- test[, c(1,2,4)]
 
 ###########################################################################################################
 
@@ -128,8 +129,10 @@ for (j in keys){
       
       k=k+1
       
+      no_col <- ncol(test)
       newspread  <- spread(df, variable, normalized)
       test <- left_join(test, newspread, by ='GEOID')
+      test <- test[, -c(no_col+1, no_col+2)]
       
       assign(paste0("DF", k), df)
     }

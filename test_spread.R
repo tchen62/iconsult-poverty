@@ -55,7 +55,9 @@ for(j in list_df){
 dfnew <- dfnew[, -5]
 
 test <- spread(dfnew, variable, normalized)
-
+#ncol(test)
+test <- test[, c(1,2,4)]
+#ncol(test)
 ###########################################################################################################
 
 
@@ -97,27 +99,19 @@ for(i in list_names[1:10])
     
     fourth.column <- j[,4]
     
-    if(fourth.column[1,1]==0){ #if first cell of fourth column (estimate) is 0 then keep it as 0
-      normed <- sapply(fourth.column, function(x) x[1])
-      normed = data.frame(normed)
-      names(normed)=c("normalized")
-      New <- cbind(normed,j)
-      df=rbind(df,New)
-      #df=df[-c(5)]
+    if(fourth.column[1,1]==0 | is.na(fourth.column[1,1])){ #if first cell of fourth column (estimate) is 0 or NA then keep it as 0
+      normed <- sapply(fourth.column, function(x) 0)
     }
     
     else{   
       normed <- sapply(fourth.column, function(x) x / x[1])
-      normed = data.frame(normed)
-      names(normed)=c("normalized")
-      New <- cbind(normed,j)
-      #assign(paste0("x", i), New)
-      #assign(paste0("DF", i$GEOID), New)
-      df=rbind(df,New)
-      
-      #df=df[-c(5)]
     }
-    
+    normed = data.frame(normed)
+    names(normed)=c("normalized")
+    New <- cbind(normed,j)
+    #assign(paste0("x", i), New)
+    #assign(paste0("DF", i$GEOID), New)
+    df=rbind(df,New)
     
   }
   
@@ -126,54 +120,11 @@ for(i in list_names[1:10])
   
   k=k+1
   
+  no_col <- ncol(test)
   newspread  <- spread(df, variable, normalized)
   test <- left_join(test, newspread, by ='GEOID')
+  test <- test[, -c(no_col+1, no_col+2)]
+  
   
   assign(paste0("DF", k), df)
-  
-  
-  #View(poverty[1:cut_point, 1:4])
-  
-  #  while (GEOID)
-  #  {
-  #   statement
-  #  }
-  
-  
-  # typeof(poverty)
-  #poverty1 <- unlist(poverty)
-  #poverty_filtered <- filter(get(paste(i, "_001", sep = '')) %in% poverty1 )
-  #poverty_filtered <- 
-  #View(poverty)
-  #View(poverty1)
-  #View(poverty_filtered)
-  # print(nrow(poverty))
-  
-  # if(nrow(poverty)<280) next
-  # 
-  # else
-  # print(i)
-  #   list_firstrow <-  poverty[[3:4]][1:nrow(poverty)]
-  # 
-  # View(list_firstrow)
-  #filter(variable == paste(i, "_001", sep = '') | variable == paste(i, "_002", sep = ''))
-  #print(typeof(poverty))
-  # print("Working")
-  # for(j in nrow(poverty)){
-  #   newdf <- data.frame(get(paste(i, "j", sep = ''))/get(paste(i, "_001", sep = '')))
-  #   print(newdf)
-  # }
-  
 }
-
-
-
-
-
-
-
-
-# for(i in seq('36067000100','36067005500','1'))
-# {
-#   subset(cutpoint_dataframe, cutpoint_dataframe$GEOID == 'i')
-# }
