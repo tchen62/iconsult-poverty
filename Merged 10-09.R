@@ -1,8 +1,8 @@
-#install.packages("dplyr")
 library("sqldf")
 library("rlist")
 library('tidycensus')
 library('dplyr')
+library(tidyr)
 v = load_variables(2017, "acs5", cache = TRUE)
 attr_names <- strsplit(v$name, '   ')[1:23348]
 list_names <- c()
@@ -28,10 +28,7 @@ k=0
 
 ################################################ Base Table #############################################################
 poverty<- get_acs(geography = "tract", table = c("B17001"), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
-                  state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)  %>% 
-  filter(variable == "B17001_001" | variable == "B17001_002")
-
-
+                  state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)
 
 #Getting 55 tracts from table
 abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067005500'") #to get a count till 55 tracts
@@ -61,7 +58,7 @@ for(j in list_df){
   dfnew =rbind(dfnew,New)
 }
 
-dfnew <- dfnew[, -4]
+dfnew <- dfnew[, -5]
 
 test <- spread(dfnew, variable, normalized)
 
@@ -69,6 +66,9 @@ test <- spread(dfnew, variable, normalized)
 
 for (j in keys){
   for(i in f){
+    if(i==621){
+      break
+    }
     if(is.element(i, skip)){
       i<-i+1
     }
@@ -106,23 +106,20 @@ for (j in keys){
         
         
         fourth.column <- j[,4]
-        
-        if(fourth.column[1,1]==0){ #if first cell of fourth column (estimate) is 0 then keep it as 0
-          normed <- sapply(fourth.column, function(x) x[1])
-          normed = data.frame(normed)
+        fourth.column[1,1]
+        if(fourth.column[1,1]==0 | is.na(fourth.column[1,1])){ #if first cell of fourth column (estimate) is 0 or NA then keep it as 0
+          normed <- sapply(fourth.column, function(x) 0)
         }
         
         else{   
           normed <- sapply(fourth.column, function(x) x / x[1])
-          normed = data.frame(normed)
-          New <- cbind(normed,j)
-          #assign(paste0("x", i), New)
-          #assign(paste0("DF", i$GEOID), New)
-          df=rbind(df,New)
-          
-          names(normed)=c("normalized")
         }
-        
+        normed = data.frame(normed)
+        names(normed)=c("normalized")
+        New <- cbind(normed,j)
+        #assign(paste0("x", i), New)
+        #assign(paste0("DF", i$GEOID), New)
+        df=rbind(df,New)
         
       }
       
@@ -131,7 +128,8 @@ for (j in keys){
       
       k=k+1
       
-      test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
+      newspread  <- spread(df, variable, normalized)
+      test <- left_join(test, newspread, by ='GEOID')
       
       assign(paste0("DF", k), df)
     }

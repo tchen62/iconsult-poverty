@@ -59,7 +59,7 @@ test <- spread(dfnew, variable, normalized)
 ###########################################################################################################
 
 
-for(i in list_names[1:42])
+for(i in list_names[1:10])
 {
   poverty<- get_acs(geography = "tract", table = c(i), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
                     state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE) #It contains 1 new table for each iteration
@@ -126,7 +126,8 @@ for(i in list_names[1:42])
   
   k=k+1
   
-  test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
+  newspread  <- spread(df, variable, normalized)
+  test <- left_join(test, newspread, by ='GEOID')
   
   assign(paste0("DF", k), df)
   
