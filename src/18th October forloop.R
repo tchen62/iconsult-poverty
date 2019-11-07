@@ -16,8 +16,12 @@ for (s in attr_names){
   list_names <- append(list_names, substr(s, 1, 6))
 }
 
-list_names <- unique(strsplit(list_names, ' '))
+poverty<- get_acs(geography = "tract", table = 'B17001', key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
+                  state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE) #It contains 1 new table for each iteration
 
+
+list_names <- unique(strsplit(list_names, ' '))
+test = DF21spread
 for(i in list_names[1:42])
 {
   poverty<- get_acs(geography = "tract", table = c(i), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
@@ -85,6 +89,8 @@ for(i in list_names[1:42])
   
   k=k+1
   
+  test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
+  
   assign(paste0("DF", k), df)
   
   
@@ -146,6 +152,8 @@ for(i in list_names[1:42])
 #DF1=DF1[-c(5)] ****************** Drop a column by index in a dataframe but we have to reassign it to a dataframe
 
 
+#A for loop to spread and join each table
+
 
 DF21spread <- spread(DF21, variable, normalized)
 test <- spread(DF20, variable, normalized) %>%
@@ -153,4 +161,30 @@ test <- spread(DF20, variable, normalized) %>%
 
 for(i in ncol(test)) {
   assign(      test[,i+2]/test[,ncol(test)]
+               
+               
+               
+               
+poverty_rates=poverty %>%
+  mutate(poverty_rates)
+               
+
+
+for(i in 4:ncol(test)){}
+  t=test[,c(1,i)] %>%
+    filter(colnames(test[i]) != 0) %>%
+    leftjoin(Poverty_rates_tract by GEOIDs)
+  
+  
+  
+  
+  corr = cor(t[,2],t[,3])
+  
+  assign(df,c(colname(test[i]),corr))
+  
+  cor()
+  
+  
+}
+               
                
