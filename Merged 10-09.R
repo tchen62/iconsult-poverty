@@ -25,7 +25,7 @@ skip <- c(43, 53, 69, 91, 119, 313, 530, 535:542, 558:562, 573, 574, 598, 606:60
 list_row_1 = list()
 f = seq(1, 42)
 k=0
-
+test = DF21spread
 for (j in keys){
   for(i in f){
     if(is.element(i, skip)){
@@ -87,7 +87,12 @@ for (j in keys){
         
       }
       
+      df=df[-c(5)] #new
+      df[is.na(df)] <- 0
+      
       k=k+1
+      
+      test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
       
       assign(paste0("DF", k), df)
     }
