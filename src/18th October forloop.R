@@ -85,47 +85,22 @@ for(i in list_names[1:42])
   }
   
   df=df[-c(5)] #new
-  df[is.na(df)] <- 0
+  df=na.omit(df)
+  #df[is.na(df)] <- 0
   
   k=k+1
   
-  test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
   
+  if (k==34){ 
+    df=spread(df, variable, normalized)
+    }
+else{  
+   df=spread(df, variable, normalized)  
+   df <- df[ -c(2,3) ]
+  }
+  
+  test <- left_join(test, df, by ='GEOID')
   assign(paste0("DF", k), df)
-  
-  
-  #View(poverty[1:cut_point, 1:4])
-  
-  #  while (GEOID)
-  #  {
-  #   statement
-  #  }
-  
-  
-  # typeof(poverty)
-  #poverty1 <- unlist(poverty)
-  #poverty_filtered <- filter(get(paste(i, "_001", sep = '')) %in% poverty1 )
-  #poverty_filtered <- 
-  #View(poverty)
-  #View(poverty1)
-  #View(poverty_filtered)
-  # print(nrow(poverty))
-  
-  # if(nrow(poverty)<280) next
-  # 
-  # else
-  # print(i)
-  #   list_firstrow <-  poverty[[3:4]][1:nrow(poverty)]
-  # 
-  # View(list_firstrow)
-  #filter(variable == paste(i, "_001", sep = '') | variable == paste(i, "_002", sep = ''))
-  #print(typeof(poverty))
-  # print("Working")
-  # for(j in nrow(poverty)){
-  #   newdf <- data.frame(get(paste(i, "j", sep = ''))/get(paste(i, "_001", sep = '')))
-  #   print(newdf)
-  # }
-  
 }
 
 
@@ -156,8 +131,8 @@ for(i in list_names[1:42])
 
 
 DF21spread <- spread(DF21, variable, normalized)
-test <- spread(DF20, variable, normalized) %>%
-  left_join(DF21spread, by ='GEOID')
+#test <- spread(DF20, variable, normalized) %>%
+  #left_join(DF21spread, by ='GEOID')
 
 for(i in ncol(test)) {
   assign(      test[,i+2]/test[,ncol(test)]
