@@ -1,8 +1,8 @@
-install.packages("dplyr")
 library("sqldf")
 library("rlist")
 library('tidycensus')
 library('dplyr')
+library(tidyr)
 v = load_variables(2017, "acs5", cache = TRUE)
 attr_names <- strsplit(v$name, '   ')[1:23348]
 list_names <- c()
@@ -20,14 +20,56 @@ keys = c("c31267aeafe69d6320e2c6ce231cdc28aa59f175", "cacf453730ea631ec447a5a961
          "bed52d7f99d905dfc116dc70b4ae900567ca45b7", "71acff7a50e167ef1402920f23f04a9097bacc38", 
          "743a238b0dd9e5c86aa396c11ac8eff705823d7a")
 
-skip <- c(43, 53, 69, 91, 119, 313, 530, 535:542, 558:562, 573, 574, 598, 606:609, 618:621)
+skip <- c(43, 53, 69, 91, 119, 212, 313, 530, 535:542, 558:562, 573, 574, 598, 606:609, 618:621)
 
 list_row_1 = list()
 f = seq(1, 42)
 k=0
-test = DF21spread
+
+################################################ Base Table #############################################################
+poverty<- get_acs(geography = "tract", table = c("B17001"), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
+                  state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)
+
+#Getting 55 tracts from table
+abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067005500'") #to get a count till 55 tracts
+#print(abc)
+cut_point <- abc$`count(GEOID)` 
+#print(cut_point)
+cutpoint_dataframe = poverty[1:cut_point, 1:4]
+
+list_df <- split(cutpoint_dataframe, cutpoint_dataframe$GEOID) #split the dataset into a list of datasets based on the value of iris$Species
+list2env(list_df, envir= .GlobalEnv) #split the list into separate datasets
+
+dfnew = data.frame(GEOID=character(),
+                   Name=character(),
+                   variable=character(),
+                   estimate=double(),
+                   stringsAsFactors = FALSE
+)
+
+for(j in list_df){
+  fourth.column <- j[,4]
+  normed <- sapply(fourth.column, function(x) x / x[1])
+  normed = data.frame(normed)
+  names(normed)=c("normalized")
+  New <- cbind(normed,j)
+  #assign(paste0("x", i), New)
+  #assign(paste0("DF", i$GEOID), New)
+  dfnew =rbind(dfnew,New)
+}
+
+dfnew <- dfnew[, -5]
+
+test <- spread(dfnew, variable, normalized)
+test <- test[, c(1,2,4)]
+
+###########################################################################################################
+
 for (j in keys){
   for(i in f){
+    if(i==621){
+      break
+    }
     if(is.element(i, skip)){
       i<-i+1
     }
@@ -45,8 +87,6 @@ for (j in keys){
       cut_point <- abc$`count(GEOID)` 
       #print(cut_point)
       cutpoint_dataframe = poverty[1:cut_point, 1:4]
-      
-      
       
       
       list_df <- split(cutpoint_dataframe, cutpoint_dataframe$GEOID) #split the dataset into a list of datasets based on the value of iris$Species
@@ -67,23 +107,20 @@ for (j in keys){
         
         
         fourth.column <- j[,4]
-        
-        if(fourth.column[1,1]==0){ #if first cell of fourth column (estimate) is 0 then keep it as 0
-          normed <- sapply(fourth.column, function(x) x[1])
-          normed = data.frame(normed)
+        fourth.column[1,1]
+        if(fourth.column[1,1]==0 | is.na(fourth.column[1,1])){ #if first cell of fourth column (estimate) is 0 or NA then keep it as 0
+          normed <- sapply(fourth.column, function(x) 0)
         }
         
         else{   
           normed <- sapply(fourth.column, function(x) x / x[1])
-          normed = data.frame(normed)
-          New <- cbind(normed,j)
-          #assign(paste0("x", i), New)
-          #assign(paste0("DF", i$GEOID), New)
-          df=rbind(df,New)
-          
-          names(normed)=c("normalized")
         }
-        
+        normed = data.frame(normed)
+        names(normed)=c("normalized")
+        New <- cbind(normed,j)
+        #assign(paste0("x", i), New)
+        #assign(paste0("DF", i$GEOID), New)
+        df=rbind(df,New)
         
       }
       
@@ -92,7 +129,10 @@ for (j in keys){
       
       k=k+1
       
-      test <- left_join(test, spread(df, variable, normalized), by ='GEOID')
+      no_col <- ncol(test)
+      newspread  <- spread(df, variable, normalized)
+      test <- left_join(test, newspread, by ='GEOID')
+      test <- test[, -c(no_col+1, no_col+2)]
       
       assign(paste0("DF", k), df)
     }
@@ -103,3 +143,4 @@ for (j in keys){
     }
   }
 }
+
