@@ -31,7 +31,7 @@ poverty<- get_acs(geography = "tract", table = c("B17001"), key = "6bef287462dbe
                   state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)
 
 #Getting 55 tracts from table
-abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067005500'") #to get a count till 55 tracts
+abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067006200'") #to get a count till 55 tracts
 #print(abc)
 cut_point <- abc$`count(GEOID)` 
 #print(cut_point)
@@ -82,7 +82,7 @@ for (j in keys){
       #Getting 55 tracts from table
       if (nrow(poverty) < 280) next #removing the particular table having one row
       else
-        abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067005500'") #to get a count till 55 tracts
+        abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067006200'") #to get a count till 55 tracts
       #print(abc)
       cut_point <- abc$`count(GEOID)` 
       #print(cut_point)
@@ -144,3 +144,17 @@ for (j in keys){
   }
 }
 
+nrow(test)
+ncol(test)
+test1<-t(test)
+nrow(test1)
+
+census_tract = c()
+corr = c()
+for (i in 4:length(test)){
+  a <- cor(test[,i], test[,4])
+  census_tract <- c(census_tract, colnames(test)[i])
+  corr <- c(corr, a)
+}
+correlation_tracts <- data.frame(census_tract, corr)
+write.csv(data.frame(census_tract, corr), 'correlation_tract.csv')
