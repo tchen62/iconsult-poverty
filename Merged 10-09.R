@@ -1,8 +1,13 @@
+install.packages('sqldf')
+install.packages('rlist')
+install.packages('tidycensus')
+install.packages('dplyr')
+install.packages('tidyr')
 library("sqldf")
 library("rlist")
 library('tidycensus')
 library('dplyr')
-library(tidyr)
+library('tidyr')
 v = load_variables(2017, "acs5", cache = TRUE)
 attr_names <- strsplit(v$name, '   ')[1:23348]
 list_names <- c()
@@ -156,5 +161,10 @@ for (i in 4:length(test)){
   census_tract <- c(census_tract, colnames(test)[i])
   corr <- c(corr, a)
 }
-correlation_tracts <- data.frame(census_tract, corr)
-write.csv(data.frame(census_tract, corr), 'correlation_tract.csv')
+correlation_tracts <- na.omit(data.frame(census_tract,corr))
+correlation_tracts <- correlation_tracts[with(corr_table, order(-corr)),]
+View(correlation_tracts)
+write.csv(correlation_tracts, 'correlation_tract.csv')
+
+
+
