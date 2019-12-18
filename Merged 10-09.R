@@ -1,8 +1,8 @@
-install.packages('sqldf')
-install.packages('rlist')
-install.packages('tidycensus')
-install.packages('dplyr')
-install.packages('tidyr')
+#install.packages('sqldf')
+#install.packages('rlist')
+#install.packages('tidycensus')
+#install.packages('dplyr')
+#install.packages('tidyr')
 library("sqldf")
 library("rlist")
 library('tidycensus')
@@ -163,8 +163,5 @@ for (i in 4:length(test)){
 }
 correlation_tracts <- na.omit(data.frame(census_tract,corr))
 correlation_tracts <- correlation_tracts[with(corr_table, order(-corr)),]
+write.csv(correlation_tracts, 'correlation_tract_sorted.csv')
 View(correlation_tracts)
-write.csv(correlation_tracts, 'correlation_tract.csv')
-
-
-
