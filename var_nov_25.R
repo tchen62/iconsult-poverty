@@ -1,18 +1,18 @@
 library(readr)
-corr_table<- read.csv('correlation_tract.csv',header = T, stringsAsFactors = F)
+corr_table<- read.csv('correlation_tract_sorted.csv',header = T, stringsAsFactors = F)
 
 
 neg_sort_corr<-corr_table[order(corr_table$corr),]
 neg_top50<-neg_sort_corr[1:50,]
 
 neg_top50$table<-substring(neg_top50$census_tract,1,6)
-neg_top50$vairable<-substring(neg_top50$census_tract,8,10)
+neg_top50$variable<-substring(neg_top50$census_tract,8,10)
 
 pos_sort_corr<-corr_table[order(-corr_table$corr),]
 pos_top50<-pos_sort_corr[1:50,]
 
 pos_top50$table<-substring(pos_top50$census_tract,1,6)
-pos_top50$vairable<-substring(pos_top50$census_tract,8,10)
+pos_top50$variable<-substring(pos_top50$census_tract,8,10)
 
 pos_top50
 
@@ -24,6 +24,8 @@ neg_top50$concept<-variables$concept[match(neg_top50$census_tract,variables$name
 
 pos_top50$label<-variables$label[match(pos_top50$census_tract,variables$name)]
 pos_top50$concept<-variables$concept[match(pos_top50$census_tract,variables$name)]
+
+pos_top50
 
 #scatter plots
 final<-read.csv('final_table.csv',header = T, stringsAsFactors = F)

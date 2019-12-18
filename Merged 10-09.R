@@ -34,7 +34,7 @@ k=0
 ################################################ Base Table #############################################################
 poverty<- get_acs(geography = "tract", table = c("B17001"), key = "6bef287462dbef1bdafdb3401c86178d1eca4a9d",
                   state = "NY", county = "Onondaga", year = 2017, survey="acs5", geometry = FALSE,cache_table = TRUE)
-
+variables <- load_variables(2017,"acs5",cache=TRUE)
 #Getting 55 tracts from table
 abc <- sqldf("Select count(GEOID) from poverty where GEOID <= '36067006200'") #to get a count till 55 tracts
 #print(abc)
@@ -163,5 +163,10 @@ for (i in 4:length(test)){
 }
 correlation_tracts <- na.omit(data.frame(census_tract,corr))
 correlation_tracts <- correlation_tracts[with(corr_table, order(-corr)),]
-write.csv(correlation_tracts, 'correlation_tract_sorted.csv')
-View(correlation_tracts)
+correlation_tracts$label <- variables$label[match(correlation_tracts$census_tract,variables$name)]
+correlation_tracts$concept<-variables$concept[match(correlation_tracts$census_tract,variables$name)]
+write.csv(correlation_tracts, 'correlation_tracts_labeled_sorted.csv')
+#First 50 corr (positive)
+head(correlation_tracts,50)
+#Last 50 corr (Negative)
+tail(correlation_tracts,50)
